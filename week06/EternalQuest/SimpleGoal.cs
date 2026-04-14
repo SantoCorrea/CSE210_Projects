@@ -1,0 +1,44 @@
+using System.Security;
+
+public class SimpleGoal : Goal
+{
+    private bool _isComplete;
+
+    public SimpleGoal(string name, string description, int points) : base(name, description, points)
+    {
+        _isComplete = false;
+    }
+
+    public override void RecordEvent()
+    {
+       if(_isComplete == true)
+        {
+            Console.WriteLine("It is already completed.");
+            return;
+        }
+
+        else
+        {
+            Console.WriteLine("Congratulations, you completed the goal!");
+            _isComplete = true;
+        }
+    }
+
+    public override bool IsComplete()
+    {
+        return _isComplete; 
+    }
+
+    public override string GetStringRepresentation()
+    {
+        if (_isComplete == true)
+        {
+            return $"[X] - {GetDetailString()}";
+        }
+
+        else
+        {
+            return $"[ ] - {GetDetailString()}";
+        }
+    }
+}  
